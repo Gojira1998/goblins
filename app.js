@@ -89,3 +89,7 @@
   captura("form-lead", "locked", "brinde", "msg-erro");
   captura("form-ft", "locked-ft", "brinde-ft", "msg-erro-ft");
 })();
+
+/* the horde: busca (gerado por gerar_horda.py) */
+(function(){var q=document.getElementById('hq');if(!q)return;var cs=[].slice.call(document.querySelectorAll('#hgrid .hcard')),out=document.getElementById('hcount');
+q.addEventListener('input',function(){var v=q.value.trim().toLowerCase().replace(/^@/,''),n=0;cs.forEach(function(c){var ok=!v||c.getAttribute('data-q').indexOf(v)>-1;c.hidden=!ok;if(ok)n++;});out.textContent=n+(n===1?' goblin':' goblins');});})();

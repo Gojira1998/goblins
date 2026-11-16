@@ -149,3 +149,22 @@ form{border-radius:16px;border-width:2px;box-shadow:0 24px 50px -20px rgba(0,0,0
 @media(min-width:700px){h1{font-size:68px}}
 @media(max-width:460px){.counter{font-size:13px}.counter b{font-size:24px}.c-upd{font-size:12px}}
 .btn.big i{display:none}
+
+/* the horde (gerado por gerar_horda.py) */
+.hsearch{display:flex;flex-direction:column;gap:6px;margin:18px 0 6px;font:400 9px var(--px);color:var(--lime)}
+.hsearch input{font:500 16px 'Space Grotesk',sans-serif;padding:12px 14px;background:var(--bg2);color:var(--cream);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--moss);outline:none}
+.hsearch input:focus{border-color:var(--fire)}
+.hcount{font:400 9px var(--px);opacity:.7;margin:8px 0 14px}
+.hgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media(min-width:560px){.hgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:760px){.hgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.hcard{position:relative;background:var(--bg2);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--moss);padding:10px 10px 12px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.hcard.lead{box-shadow:4px 4px 0 var(--fire)}.hcard.lone{box-shadow:4px 4px 0 #b3263a}
+.hn{position:absolute;top:6px;left:8px;font:400 8px var(--px);color:var(--lime);opacity:.8}
+.hi{height:150px;display:flex;align-items:flex-end;justify-content:center;background:radial-gradient(ellipse at 50% 85%,rgba(56,224,200,.14),transparent 65%)}
+.hi img{max-height:146px;width:auto;image-rendering:pixelated}
+.hh{font:400 9px/1.5 var(--px);color:var(--fire);text-decoration:none;overflow-wrap:anywhere;margin-top:4px}
+a.hh:hover{text-decoration:underline}
+.hs{font:400 7px/1.5 var(--px);color:var(--cyan)}
+.hd{font-size:12px;line-height:1.4;opacity:.85}
+.hcard[hidden]{display:none}
