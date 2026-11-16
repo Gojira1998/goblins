@@ -142,15 +142,53 @@
         <a class="btn s" href="https://www.instagram.com/agentsgoblins.ai/reels/" target="_blank" rel="noopener">Answer on Instagram</a>
       </div>
     </article>
-    <article class="ep soon">
+    <article class="ep">
       <img src="assets/s17.jpg" alt="A glowing door at the end of a dark server aisle" loading="lazy">
       <div class="ep-b">
-        <p class="ticket">Episode 3 &middot; next ticket</p>
-        <h3>The horde opens the first ticket</h3>
-        <p>Next episode, next material. Followers get the alert first.</p>
-        <span class="lock">Locked</span>
+        <p class="ticket">Episode 3 &middot; &ldquo;The Flood&rdquo;</p>
+        <h3>First Ticket: 7 fixes</h3>
+        <p>You sent the boring tasks. The horde turned them into 7 prompts you can paste into any AI.</p>
+        <a class="btn s" href="#first-ticket">Unlock it free</a>
       </div>
     </article>
+  </div>
+</section>
+
+<!-- 5b. FIRST TICKET (episode 3 material, lead capture before the prompts) -->
+<section class="sec join" id="first-ticket">
+  <img class="join-bg" src="assets/s17.jpg" alt="" aria-hidden="true">
+  <div class="join-in">
+    <p class="tag">Episode 3 &middot; ticket closed</p>
+    <h2>First Ticket.<br><span class="o">7 boring tasks, fixed.</span></h2>
+    <p class="lead">You told the horde which boring tasks AI should just do. The goblins wrote one prompt for each: work, homework, dinner, writing, the truth, fixing things and growing an account. Drop your details and they open right here.</p>
+
+    <div id="locked-ft">
+      <form id="form-ft" data-slug="c-first-ticket" novalidate>
+        <div class="campo"><label for="ft-name">Name</label><input id="ft-name" name="name" type="text" autocomplete="name" placeholder="Your name" required></div>
+        <div class="campo"><label for="ft-email">Email</label><input id="ft-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required></div>
+        <div class="campo"><label for="ft-phone">Phone (with country code)</label><input id="ft-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+1 555 123 4567" required></div>
+        <div class="armadilha" aria-hidden="true"><label>Do not fill<input name="site_url" type="text" tabindex="-1" autocomplete="off"></label></div>
+        <label class="marcar"><input type="checkbox" name="consent" required><span>I agree to receive content and offers from JGA / Agents Goblins by email and phone message. I can leave anytime. My data stays with JGA and is never sold. <a href="#privacy">Privacy details</a>.</span></label>
+        <p class="erro" id="msg-erro-ft" role="alert"></p>
+        <button class="btn big" type="submit">Unlock the First Ticket <i aria-hidden="true">&#9654;</i></button>
+        <p class="fine">If something fails, the ticket stays locked and we tell you. Try again in a moment.</p>
+      </form>
+    </div>
+
+    <div id="brinde-ft" hidden>
+      <div class="win"><span class="px">&#9733;</span> Ticket closed. Welcome to the horde.</div>
+      <p class="fine c">Tap Copy, paste into ChatGPT, Claude, Gemini or any chat AI, then replace the [brackets].</p>
+      <ol class="prompts">
+        <li><h3>1. The Inbox Goblin</h3><p>Work: messages piling up.</p><pre>Here are the messages I need to deal with: [paste emails or chats]. Sort them into three groups: REPLY TODAY, CAN WAIT, IGNORE. For every REPLY TODAY, write a short reply in a plain, friendly tone (4 sentences max). Then give me a to-do list of everything I promised someone. If a reply needs a fact I did not give you, write [ASK] instead of guessing.</pre><button class="cp" type="button">Copy</button></li>
+        <li><h3>2. The Quiz Goblin</h3><p>Homework: learn it, don't fake it.</p><pre>I am studying [topic] for [class or level]. Explain it in plain words in under 150 words, with one everyday example. Then quiz me with 3 questions, one at a time. Wait for my answer before the next one. Never give the answer before I try. If I get it wrong, give me a hint first. At the end, tell me the one part I should review again.</pre><button class="cp" type="button">Copy</button></li>
+        <li><h3>3. The Fridge Goblin</h3><p>Dinner and groceries.</p><pre>Here is what I have at home: [list the food you have, or attach a photo of your fridge if your AI accepts images]. I have [minutes] minutes and these tools: [stove, oven, microwave]. Give me 3 dinner ideas that use mostly what I already have, each in 6 short steps or fewer. Then write a grocery list only for what is missing, grouped by store section.</pre><button class="cp" type="button">Copy</button></li>
+        <li><h3>4. The Blank Page Goblin</h3><p>Writing: notes to first draft.</p><pre>Topic: [topic]. Reader: [who will read it]. Length: [number] words. Here are my messy notes: [paste notes]. Write a first draft that keeps my points and my order. Plain words, no filler, no long intro. Then list the 3 weakest spots in the draft and ask me one question about each.</pre><button class="cp" type="button">Copy</button></li>
+        <li><h3>5. The Truth Goblin</h3><p>Find out what is true.</p><pre>Here is a claim, post or article: [paste it]. List every factual claim in it. Mark each one SURE, PROBABLY or CHECK THIS. For every CHECK THIS, tell me what kind of source would confirm it and what to search for. Do not invent sources or links. If you are not sure, say so.</pre><button class="cp" type="button">Copy</button></li>
+        <li><h3>6. The Fixer Goblin</h3><p>Something is broken.</p><pre>Something is broken: [device, app or thing]. What happens: [describe the problem]. What I already tried: [list]. Ask me up to 3 questions first. Then give me checks from easiest to hardest, one at a time, and wait for my result after each one. Tell me clearly when it is time to stop and call a professional.</pre><button class="cp" type="button">Copy</button></li>
+        <li><h3>7. The Hook Goblin</h3><p>Grow an account.</p><pre>My account is about [topic], for [who follows it]. Give me 10 post ideas, each one answering a real question this audience has. For each idea, write a hook under 8 words and the one thing the viewer learns. No hype words. If an idea needs a fact, mark it [CHECK].</pre><button class="cp" type="button">Copy</button></li>
+      </ol>
+      <p class="fine c">AI makes mistakes. Read the answer before you use it. No paid tool needed.</p>
+    </div>
   </div>
 </section>
 
@@ -202,12 +240,12 @@
   <p class="links"><a href="https://www.instagram.com/agentsgoblins.ai/" target="_blank" rel="noopener">Instagram @agentsgoblins.ai</a> <a href="https://www.tiktok.com/@agentsgoblins.ai" target="_blank" rel="noopener">TikTok</a></p>
   <div id="privacy" class="priv">
     <h4>Privacy, in short</h4>
-    <p>We collect your name, email and phone only to send you the Goblin Prompt Pack, episode alerts and related offers from JGA. We never sell or share your data. Ask us to delete it any time through a direct message on Instagram @agentsgoblins.ai.</p>
+    <p>We collect your name, email and phone only to send you the Goblin Prompt Pack, the First Ticket, episode alerts and related offers from JGA. We never sell or share your data. Ask us to delete it any time through a direct message on Instagram @agentsgoblins.ai.</p>
   </div>
   <p class="fine c">Independent content, no AI brand. Goblins are fictional characters. A JGA project by Jo&atilde;o Gabriel, Sete Lagoas, Brazil.</p>
 </footer>
 
 <script src="leads-config.js?v=20261114"></script>
-<script src="app.js"></script>
+<script src="app.js?v=20261116"></script>
 </body>
 </html>

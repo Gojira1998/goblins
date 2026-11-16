@@ -42,46 +42,50 @@
     });
   });
 
-  /* lead capture */
-  var form = document.getElementById("form-lead"), brinde = document.getElementById("brinde"), caixa = document.getElementById("locked");
-  if (!form) return;
-  var slug = form.getAttribute("data-slug"), chave = "jga_lead_" + slug, aberto = Date.now();
-  function liberar(scroll) { brinde.hidden = false; caixa.hidden = true; if (scroll) brinde.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" }); }
+  /* lead capture: one function per box (Goblin Prompt Pack = #form-lead, First Ticket = #form-ft). Same table, post_slug marks the box. */
   var p = new URLSearchParams(location.search);
-  try { if (localStorage.getItem(chave) === "1") { liberar(false); return; } } catch (e) {}
-  if (p.get("preview") === "1" && (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.protocol === "file:")) { liberar(false); return; }
+  function captura(formId, caixaId, brindeId, msgId) {
+    var form = document.getElementById(formId), brinde = document.getElementById(brindeId), caixa = document.getElementById(caixaId);
+    if (!form || !brinde || !caixa) return;
+    var slug = form.getAttribute("data-slug"), chave = "jga_lead_" + slug, aberto = Date.now();
+    function liberar(scroll) { brinde.hidden = false; caixa.hidden = true; if (scroll) brinde.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" }); }
+    try { if (localStorage.getItem(chave) === "1") { liberar(false); return; } } catch (e) {}
+    if (p.get("preview") === "1" && (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.protocol === "file:")) { liberar(false); return; }
 
-  var msg = document.getElementById("msg-erro");
-  function erro(t) { msg.textContent = t || ""; }
-  form.addEventListener("submit", function (ev) {
-    ev.preventDefault(); erro("");
-    var f = new FormData(form);
-    if (f.get("site_url")) return;
-    if (Date.now() - aberto < 3000) { erro("Hold on a second and hit the button again."); return; }
-    var nome = (f.get("name") || "").trim();
-    var email = (f.get("email") || "").trim().toLowerCase();
-    var fone = (f.get("phone") || "").replace(/\D/g, "");
-    if (nome.length < 2) { erro("Type your name."); return; }
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) { erro("Check your email address."); return; }
-    if (fone.length < 10 || fone.length > 13) { erro("Check your phone: country code plus number, 10 to 13 digits. Example: +1 555 123 4567."); return; }
-    if (!f.get("consent")) { erro("Tick the consent box to unlock the pack."); return; }
-    var cfg = window.JGA_LEADS || {};
-    if (!cfg.url || !cfg.anonKey) { erro("Sign-up is being fixed. The pack stays locked for now. Try again later."); return; }
-    var botao = form.querySelector("button[type=submit]");
-    var txt = botao.innerHTML; botao.disabled = true; botao.textContent = "Sending...";
-    var corpo = { nome: nome, whatsapp: fone, email: email, post_slug: slug, mentoria: false, consentimento: true,
-      origem: (p.get("utm_source") || document.referrer || "direct").slice(0, 120) };
-    fetch(cfg.url.replace(/\/$/, "") + "/rest/v1/" + (cfg.tabela || "leads"), {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "apikey": cfg.anonKey, "Authorization": "Bearer " + cfg.anonKey, "Prefer": "return=minimal" },
-      body: JSON.stringify(corpo)
-    }).then(function (r) {
-      if (!r.ok && r.status !== 409) throw new Error("status " + r.status);   // 409 = already signed up for this pack: unlock anyway
-      try { localStorage.setItem(chave, "1"); } catch (e) {}
-      liberar(true);
-    }).catch(function () {
-      erro("We could not send your details. The pack is still locked. Try again in a moment.");
-      botao.disabled = false; botao.innerHTML = txt;
+    var msg = document.getElementById(msgId);
+    function erro(t) { msg.textContent = t || ""; }
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault(); erro("");
+      var f = new FormData(form);
+      if (f.get("site_url")) return;
+      if (Date.now() - aberto < 3000) { erro("Hold on a second and hit the button again."); return; }
+      var nome = (f.get("name") || "").trim();
+      var email = (f.get("email") || "").trim().toLowerCase();
+      var fone = (f.get("phone") || "").replace(/\D/g, "");
+      if (nome.length < 2) { erro("Type your name."); return; }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) { erro("Check your email address."); return; }
+      if (fone.length < 10 || fone.length > 13) { erro("Check your phone: country code plus number, 10 to 13 digits. Example: +1 555 123 4567."); return; }
+      if (!f.get("consent")) { erro("Tick the consent box to unlock it."); return; }
+      var cfg = window.JGA_LEADS || {};
+      if (!cfg.url || !cfg.anonKey) { erro("Sign-up is being fixed. It stays locked for now. Try again later."); return; }
+      var botao = form.querySelector("button[type=submit]");
+      var txt = botao.innerHTML; botao.disabled = true; botao.textContent = "Sending...";
+      var corpo = { nome: nome, whatsapp: fone, email: email, post_slug: slug, mentoria: false, consentimento: true,
+        origem: (p.get("utm_source") || document.referrer || "direct").slice(0, 120) };
+      fetch(cfg.url.replace(/\/$/, "") + "/rest/v1/" + (cfg.tabela || "leads"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "apikey": cfg.anonKey, "Authorization": "Bearer " + cfg.anonKey, "Prefer": "return=minimal" },
+        body: JSON.stringify(corpo)
+      }).then(function (r) {
+        if (!r.ok && r.status !== 409) throw new Error("status " + r.status);   // 409 = already signed up for this box: unlock anyway
+        try { localStorage.setItem(chave, "1"); } catch (e) {}
+        liberar(true);
+      }).catch(function () {
+        erro("We could not send your details. It is still locked. Try again in a moment.");
+        botao.disabled = false; botao.innerHTML = txt;
+      });
     });
-  });
+  }
+  captura("form-lead", "locked", "brinde", "msg-erro");
+  captura("form-ft", "locked-ft", "brinde-ft", "msg-erro-ft");
 })();
