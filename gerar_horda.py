@@ -11,7 +11,8 @@ Uso:  py -3.11 gerar_horda.py
 - Não publica nada. Publicar = bash ../publicar.sh c-goblins goblins (só com OK do João)."""
 import json, html, re, os
 B = os.path.dirname(os.path.abspath(__file__)); PROD = os.path.join(B, "..", "..", "producao")
-EPISODIOS = [(3, "C-video3"), (4, "C-video4")]          # (número do episódio, pasta em producao/)
+EPISODIOS = [(2, "C-video5"), (3, "C-video3"), (4, "C-video4")]   # (número do episódio, pasta em producao/); ordem = ordem de leitura, o último com lista vira o "new"
+# (2, "C-video5"): os 6 do ep. 2 ganharam goblin em 17/11 (n 101 a 106, salvos na pasta do ep. 5); a ficha diz "Ep. 2" porque foi lá que eles saíram.
 EP2 = ["@victor_automates", "@mcautomate", "@tajnyslipy", "@rinraroyl", "@anaar_net", "@stck.wrld"]   # os 6 do ep. 2 (estão na cena, sem ficha)
 PAPEL = {1: "Squad leader", 2: "Big and strong", 11: "The Shadow, night watch chief", 12: "Night watch", 13: "Night watch", 14: "The lone goblin", 15: "Leads his own crew", 16: "Korg, red goblin warlord", 17: "The Manager"}
 OFENSIVO = {"@rivertheretard": "RIVER"}                 # @ com palavra ofensiva: aparece com apelido, sem link
