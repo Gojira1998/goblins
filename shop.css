@@ -1,0 +1,27 @@
+/* Goblin shop (fica fora do style.css porque o gerar_horda.py reescreve o fim dele) */
+.hbuy{display:flex;flex-direction:column;gap:6px;margin-top:auto;padding-top:8px}
+.hbtn{display:block;text-align:center;font:700 12px/1.25 var(--px);padding:9px 6px;border-radius:9px;text-decoration:none;color:var(--ink);overflow-wrap:anywhere}
+.hbtn.hd{background:var(--fire);box-shadow:0 3px 0 #a3501a}
+.hbtn.an{background:var(--lime);box-shadow:0 3px 0 #5d9a2c}
+.hbtn:active{transform:translateY(3px);box-shadow:none}
+.hbtn.off{background:#2c2440;color:var(--cream);opacity:.6;box-shadow:none;cursor:default}
+.shop-toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:60;width:min(92vw,440px);background:var(--bg2);color:var(--cream);border:2px solid var(--lime);border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.45;box-shadow:0 14px 40px -10px rgba(0,0,0,.8)}
+.shop-toast[hidden]{display:none}
+.shop-banner{width:100%;height:auto;border-radius:14px;border:3px solid var(--ink);box-shadow:0 0 0 2px #2c2440;margin:16px 0 18px}
+.offers{display:grid;gap:14px}
+@media(min-width:680px){.offers{grid-template-columns:1fr 1fr}}
+.offer{background:var(--bg2);border:2px solid #2c2440;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.offer.hd{border-color:var(--fire)}.offer.an{border-color:var(--lime)}
+.offer .ofig{display:flex;gap:10px;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.25);border-radius:10px;padding:10px;min-height:220px}
+.offer .ofig img{max-height:240px;width:auto;border-radius:8px}
+.offer .ofig .ava{max-height:120px;border-radius:50%;border:3px solid var(--lime)}
+.offer h3{font:700 18px/1.3 var(--px);color:var(--cream);display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.offer h3 b{font-size:22px;color:var(--fire)}.offer.an h3 b{color:var(--lime)}
+.offer ul{list-style:none;display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.45}
+.offer li::before{content:"\25B8  ";color:var(--cyan)}
+.steps{counter-reset:s;list-style:none;display:grid;gap:8px;margin:18px 0 10px}
+.steps li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.45}
+.steps li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:7px;background:var(--fire);color:var(--ink);font:700 14px/26px var(--px);text-align:center}
+.shop-cta{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 4px}
+.shop-soon{font:600 14px/1.5 var(--px);color:var(--cyan);border:2px dashed #3a3150;border-radius:10px;padding:12px 14px;margin:6px 0}
+.shop-soon[hidden]{display:none}

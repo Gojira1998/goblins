@@ -90,6 +90,22 @@
   captura("form-ft", "locked-ft", "brinde-ft", "msg-erro-ft");
 })();
 
-/* the horde: busca (gerado por gerar_horda.py) */
-(function(){var q=document.getElementById('hq');if(!q)return;var cs=[].slice.call(document.querySelectorAll('#hgrid .hcard')),out=document.getElementById('hcount');
-q.addEventListener('input',function(){var v=q.value.trim().toLowerCase().replace(/^@/,''),n=0;cs.forEach(function(c){var ok=!v||c.getAttribute('data-q').indexOf(v)>-1;c.hidden=!ok;if(ok)n++;});out.textContent=n+(n===1?' goblin':' goblins');});})();
+/* the horde: busca por @ (gerado por gerar_horda.py) */
+(function(){var q=document.getElementById('hq');if(!q)return;
+var cs=[].slice.call(document.querySelectorAll('#hgrid .hcard')),out=document.getElementById('hcount'),none=document.getElementById('hnone'),base=out.textContent;
+var EP2=["victor_automates", "mcautomate", "tajnyslipy", "rinraroyl", "anaar_net", "stck.wrld"];
+function norm(v){return (v||'').trim().toLowerCase().replace(/^@+/,'').replace(/^https?:\/\/(www\.)?instagram\.com\//,'').replace(/[\/?#].*$/,'');}
+function run(v,go){v=norm(v);var n=0,exact=null;
+ cs.forEach(function(c){c.classList.remove('hit');var h=c.getAttribute('data-h');var ok=!v||h.indexOf(v)>-1||c.getAttribute('data-q').indexOf(v)>-1;if(v&&h===v)exact=c;c.hidden=!ok;if(ok)n++;});
+ if(exact){cs.forEach(function(c){c.hidden=c!==exact;});n=1;exact.classList.add('hit');}
+ out.textContent=v?(n+(n===1?' goblin':' goblins')):base;
+ none.hidden=true;
+ if(v&&!n){none.hidden=false;none.textContent=EP2.indexOf(v)>-1?('@'+v+', you walked out in episode 2 with the first six. Your card is coming. Comment the look you want on the latest episode.'):('No goblin for @'+v+' yet. Comment the goblin you want to be on the latest episode and follow. You walk out of the next server.');}
+ if(go){var t=exact||document.getElementById('horde');setTimeout(function(){t.scrollIntoView({behavior:'smooth',block:exact?'center':'start'});},60);}
+}
+q.addEventListener('input',function(){run(q.value,false);});
+var top=document.getElementById('findtop');
+if(top)top.addEventListener('submit',function(e){e.preventDefault();var v=top.querySelector('input').value;q.value=v;run(v,true);try{history.replaceState(null,'','?me='+encodeURIComponent(norm(v))+'#horde');}catch(_){}});
+var me=new URLSearchParams(location.search).get('me')||((location.hash.match(/^#@(.+)$/)||[])[1]);
+if(me){me=decodeURIComponent(me);q.value='@'+norm(me);run(me,true);}
+})();
