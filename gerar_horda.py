@@ -11,12 +11,12 @@ Uso:  py -3.11 gerar_horda.py
 - Não publica nada. Publicar = bash ../publicar.sh c-goblins goblins (só com OK do João)."""
 import json, html, re, os
 B = os.path.dirname(os.path.abspath(__file__)); PROD = os.path.join(B, "..", "..", "producao")
-EPISODIOS = [(2, "C-video5"), (3, "C-video3"), (4, "C-video4"), (5, "C-video5")]   # (número do episódio, pasta em producao/); ordem = ordem de leitura, o último com lista vira o "new"
+EPISODIOS = [(2, "C-video5"), (3, "C-video3"), (4, "C-video4"), (5, "C-video5"), (6, "C-video6")]   # (número do episódio, pasta em producao/); ordem = ordem de leitura, o último com lista vira o "new"
 # (2, "C-video5") e (5, "C-video5"): a lista do ep. 5 também guarda os 6 do ep. 2 (101 a 106 = Ep. 2; 107 em diante = Ep. 5, ver SO_EP).
 # (2, "C-video5"): os 6 do ep. 2 ganharam goblin em 17/11 (n 101 a 106, salvos na pasta do ep. 5); a ficha diz "Ep. 2" porque foi lá que eles saíram.
 EP2 = ["@victor_automates", "@mcautomate", "@tajnyslipy", "@rinraroyl", "@anaar_net", "@stck.wrld"]   # os 6 do ep. 2 (estão na cena, sem ficha)
 PAPEL = {1: "Squad leader", 2: "Big and strong", 11: "The Shadow, night watch chief", 12: "Night watch", 13: "Night watch", 14: "The lone goblin", 15: "Leads his own crew", 16: "Korg, red goblin warlord", 17: "The Manager"}
-OFENSIVO = {"@rivertheretard": "RIVER"}                 # @ com palavra ofensiva: aparece com apelido, sem link
+OFENSIVO = {"@rivertheretard": "RIVER", "@fuck.allyoull": "ALLYOULL"}                 # @ com palavra ofensiva: aparece com apelido, sem link
 
 def limpa(s):
     s = re.sub(r"^(a|an|the)\s+", "", s.strip(), flags=re.I)
@@ -47,19 +47,19 @@ def recorta_magenta(path, alvo_h=300):
     s = alvo_h / im.height
     return im.resize((max(1, round(im.width * s)), alvo_h), Image.LANCZOS)
 
-def imagem(n, pasta, arquivo):
+def imagem(n, pasta, arquivo, suf=""):   # suf="e": imagem nova de quem evoluiu (não reaproveita a antiga)
     """Devolve o caminho relativo da webp (criando se der) ou None se o goblin ainda não foi desenhado."""
-    dst = os.path.join(B, "assets", "horda", f"{n:02d}.webp")
-    if os.path.exists(dst): return f"assets/horda/{n:02d}.webp"
+    dst = os.path.join(B, "assets", "horda", f"{n:02d}{suf}.webp")
+    if os.path.exists(dst): return f"assets/horda/{n:02d}{suf}.webp"
     from PIL import Image
-    cortado = os.path.join(PROD, pasta, "assets", "gob", f"{n:02d}.png")
+    cortado = os.path.join(PROD, pasta, "assets", "gob", f"{n:02d}{suf}.png")
     bruto = os.path.join(PROD, pasta, "goblins", arquivo)
     if os.path.exists(cortado): im = Image.open(cortado).convert("RGBA")
     elif os.path.exists(bruto): im = recorta_magenta(bruto)
     else: return None
     os.makedirs(os.path.dirname(dst), exist_ok=True); im.save(dst, "WEBP", quality=90, method=6)
     print("imagem nova:", os.path.basename(dst))
-    return f"assets/horda/{n:02d}.webp"
+    return f"assets/horda/{n:02d}{suf}.webp"
 
 # ---- junta os episódios
 fichas, por_handle, ult_ep = [], {}, 3
@@ -75,16 +75,17 @@ for ep, pasta in EPISODIOS:
     for x in L:
         if pasta == "C-video5" and (x["n"] <= 106) != (ep == 2): continue   # SO_EP: mesma pasta, dois episódios
         h = x["handle"]; k = h.lower()
-        img = imagem(x["n"], pasta, x["arquivo"])
+        img = imagem(x["n"], pasta, x["arquivo"], "e" if (x.get("evolui") and ep >= 6) else "")
+        if ep >= 6: x["papel"] = None   # do ep. 6 em diante o "papel" da lista é nota interna em português: não vai pra página
         if k in por_handle:
             f = por_handle[k]
             if not x.get("evolui"): print("repetido, ignorado:", h); continue
-            f.update(evol=ep, como=x["como"], papel=x.get("papel", f["papel"]))
+            f.update(evol=ep, como=x["como"], papel=x.get("papel") or f["papel"])
             if img: f["img"] = img
             continue
         f = {"n": x["n"], "h": h, "ep": ep, "evol": None, "img": img, "como": x["como"],
              "sq": "THE LONE GOBLIN" if (ep == 3 and x["n"] == 14) else squad.get(x["n"], x.get("squad", "THE HORDE")),
-             "papel": x.get("papel", PAPEL.get(x["n"], "") if ep == 3 else "")}
+             "papel": (x.get("papel") or "") if "papel" in x else (PAPEL.get(x["n"], "") if ep == 3 else "")}
         por_handle[k] = f; fichas.append(f)
 
 # mais novos primeiro (quem acabou de pedir acha o dele sem rolar), depois por número
