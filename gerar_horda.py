@@ -11,7 +11,7 @@ Uso:  py -3.11 gerar_horda.py
 - Não publica nada. Publicar = bash ../publicar.sh c-goblins goblins (só com OK do João)."""
 import json, html, re, os
 B = os.path.dirname(os.path.abspath(__file__)); PROD = os.path.join(B, "..", "..", "producao")
-EPISODIOS = [(2, "C-video5"), (3, "C-video3"), (4, "C-video4"), (5, "C-video5"), (6, "C-video6")]   # (número do episódio, pasta em producao/); ordem = ordem de leitura, o último com lista vira o "new"
+EPISODIOS = [(2, "C-video5"), (3, "C-video3"), (4, "C-video4"), (5, "C-video5"), (6, "C-video6"), (7, "C-video7")]   # (número do episódio, pasta em producao/); ordem = ordem de leitura, o último com lista vira o "new"
 # (2, "C-video5") e (5, "C-video5"): a lista do ep. 5 também guarda os 6 do ep. 2 (101 a 106 = Ep. 2; 107 em diante = Ep. 5, ver SO_EP).
 # (2, "C-video5"): os 6 do ep. 2 ganharam goblin em 17/11 (n 101 a 106, salvos na pasta do ep. 5); a ficha diz "Ep. 2" porque foi lá que eles saíram.
 EP2 = ["@victor_automates", "@mcautomate", "@tajnyslipy", "@rinraroyl", "@anaar_net", "@stck.wrld"]   # os 6 do ep. 2 (estão na cena, sem ficha)
