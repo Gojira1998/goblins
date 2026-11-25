@@ -88,6 +88,7 @@
   }
   captura("form-lead", "locked", "brinde", "msg-erro");
   captura("form-ft", "locked-ft", "brinde-ft", "msg-erro-ft");
+  captura("form-t2", "locked-t2", "brinde-t2", "msg-erro-t2");
 })();
 
 /* the horde: busca por @ (gerado por gerar_horda.py) */

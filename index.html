@@ -313,6 +313,15 @@
         <a class="btn s" href="#first-ticket">Unlock it free</a>
       </div>
     </article>
+    <article class="ep">
+      <img src="assets/s17.jpg" alt="A glowing door at the end of a dark server aisle" loading="lazy">
+      <div class="ep-b">
+        <p class="ticket">Episode 10 &middot; &ldquo;The Black Ticket&rdquo;</p>
+        <h3>Ticket #2: 2 check-twice prompts</h3>
+        <p>You answered Ticket #2. The goblins opened the box and wrote a prompt for each answer.</p>
+        <a class="btn s" href="#ticket-2">Unlock it free</a>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -348,6 +357,39 @@
         <li><h3>5. The Truth Goblin</h3><p>Find out what is true.</p><pre>Here is a claim, post or article: [paste it]. List every factual claim in it. Mark each one SURE, PROBABLY or CHECK THIS. For every CHECK THIS, tell me what kind of source would confirm it and what to search for. Do not invent sources or links. If you are not sure, say so.</pre><button class="cp" type="button">Copy</button></li>
         <li><h3>6. The Fixer Goblin</h3><p>Something is broken.</p><pre>Something is broken: [device, app or thing]. What happens: [describe the problem]. What I already tried: [list]. Ask me up to 3 questions first. Then give me checks from easiest to hardest, one at a time, and wait for my result after each one. Tell me clearly when it is time to stop and call a professional.</pre><button class="cp" type="button">Copy</button></li>
         <li><h3>7. The Hook Goblin</h3><p>Grow an account.</p><pre>My account is about [topic], for [who follows it]. Give me 10 post ideas, each one answering a real question this audience has. For each idea, write a hook under 8 words and the one thing the viewer learns. No hype words. If an idea needs a fact, mark it [CHECK].</pre><button class="cp" type="button">Copy</button></li>
+      </ol>
+      <p class="fine c">AI makes mistakes. Read the answer before you use it. No paid tool needed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5c. TICKET #2 (episode 10 material, lead capture before the prompts; palavra CHECK no robo) -->
+<section class="sec join" id="ticket-2">
+  <img class="join-bg" src="assets/s17.jpg" alt="" aria-hidden="true">
+  <div class="join-in">
+    <p class="tag">Episode 10 &middot; the box is open</p>
+    <h2>Ticket #2.<br><span class="o">Check it twice.</span></h2>
+    <p class="lead">You told the horde which boring job to hand an AI agent: school work, and checking the agents' own work. The goblins wrote one prompt for each. Both use the same rule: one agent does the job, a second one checks it. Drop your details and they open right here.</p>
+
+    <div id="locked-t2">
+      <form id="form-t2" data-slug="c-ticket-2" novalidate>
+        <div class="campo"><label for="t2-name">Name</label><input id="t2-name" name="name" type="text" autocomplete="name" placeholder="Your name" required></div>
+        <div class="campo"><label for="t2-email">Email</label><input id="t2-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required></div>
+        <div class="campo"><label for="t2-phone">Phone (with country code)</label><input id="t2-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+1 555 123 4567" required></div>
+        <div class="armadilha" aria-hidden="true"><label>Do not fill<input name="site_url" type="text" tabindex="-1" autocomplete="off"></label></div>
+        <label class="marcar"><input type="checkbox" name="consent" required><span>I agree to receive content and offers from JGA / Agents Goblins by email and phone message. I can leave anytime. My data stays with JGA and is never sold. <a href="#privacy">Privacy details</a>.</span></label>
+        <p class="erro" id="msg-erro-t2" role="alert"></p>
+        <button class="btn big" type="submit">Unlock Ticket #2 <i aria-hidden="true">&#9654;</i></button>
+        <p class="fine">If something fails, the ticket stays locked and we tell you. Try again in a moment.</p>
+      </form>
+    </div>
+
+    <div id="brinde-t2" hidden>
+      <div class="win"><span class="px">&#9733;</span> Ticket #2 open. Welcome to the horde.</div>
+      <p class="fine c">Tap Copy, paste into ChatGPT, Claude, Gemini or any chat AI, then replace the [brackets].</p>
+      <ol class="prompts">
+        <li><h3>1. The Check-Twice Goblin</h3><p>School work, math first: solve it, then check it.</p><pre>I need help with this problem or assignment: [paste it]. Work in two roles. Role 1, the Solver: solve it step by step and show every step. Role 2, the Checker: go back through each step as if someone else wrote it, redo the arithmetic on its own, and mark every step OK or WRONG. If any step is WRONG, fix it and check again. Give me the final answer last, with the steps written so I can explain them to my teacher. If you are not sure about something, say so.</pre><button class="cp" type="button">Copy</button></li>
+        <li><h3>2. The Night Watch Goblin</h3><p>Checking another agent's work.</p><pre>Here is the work an AI agent just did: [paste its output, plan or code]. Here is what I asked it to do: [paste the request]. Act as a second agent whose only job is to check it. List what it did that I did not ask for, what it skipped, and every claim or number that needs a source. Mark each item OK, FIX or ASK ME. Do not rewrite the work. End with the one thing I should check by hand first.</pre><button class="cp" type="button">Copy</button></li>
       </ol>
       <p class="fine c">AI makes mistakes. Read the answer before you use it. No paid tool needed.</p>
     </div>
@@ -408,7 +450,7 @@
 </footer>
 
 <script src="leads-config.js?v=20261114"></script>
-<script src="app.js?v=20261116"></script>
+<script src="app.js?v=20261124"></script>
 <script src="config.js?v=20261117"></script>
 <script src="shop.js?v=20261117"></script>
 </body>
